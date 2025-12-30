@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} - CodeProb</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="/">CodeProb</a>
+            </h1>
+            <nav class="main-nav">
+                <a href="/problems/" class="nav-link nav-link--active">Problems</a>
+                <a href="/concepts/" class="nav-link">Concepts</a>
+                <a href="/articles/" class="nav-link">Articles</a>
+                <a href="/writer.html" class="nav-link nav-link--writer">Write</a>
+                <button id="theme-toggle" class="theme-toggle">🌙 Dark</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <article class="problem" data-id="{{ID}}" data-difficulty="{{DIFFICULTY}}">
+                <header>
+                    <h1>{{TITLE}}</h1>
+                    <div class="metadata">
+                        <span class="difficulty">{{DIFFICULTY_DISPLAY}}</span>
+                        <span class="topics">{{TOPICS}}</span>
+                    </div>
+                </header>
+                
+                <section class="description">
+                    <h2>Problem Description</h2>
+                    {{DESCRIPTION}}
+                </section>
+                
+                <section class="examples">
+                    <h2>Examples</h2>
+                    {{EXAMPLES}}
+                </section>
+                
+                {{HINTS_SECTION}}
+                
+                <section class="related-links">
+                    <h2>Related Content</h2>
+                    {{RELATED_LINKS}}
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CodeProb. A static, community-driven platform hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

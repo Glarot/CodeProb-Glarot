@@ -1,0 +1,49 @@
+{
+  "name": "codeprob",
+  "version": "1.0.0",
+  "description": "A static, community-driven programming knowledge and problem platform",
+  "main": "index.html",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "validate": "node scripts/validate-content.js",
+    "serve": "python -m http.server 8000 || python3 -m http.server 8000",
+    "build": "npm run validate && npm test",
+    "deploy": "npm run build"
+  },
+  "keywords": [
+    "programming",
+    "education",
+    "practice",
+    "static-site",
+    "github-pages"
+  ],
+  "author": "CodeProb Team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codeprob/codeprob.git"
+  },
+  "homepage": "https://codeprob.github.io/codeprob",
+  "bugs": {
+    "url": "https://github.com/codeprob/codeprob/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "fast-check": "^3.15.0",
+    "@types/jest": "^29.5.8"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"],
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "assets/js/**/*.js",
+      "!assets/js/**/*.min.js"
+    ]
+  }
+}

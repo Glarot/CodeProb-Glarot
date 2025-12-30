@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Problem - CodeProb</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="/">CodeProb</a>
+            </h1>
+            <nav class="main-nav">
+                <a href="/problems/" class="nav-link nav-link--active">Problems</a>
+                <a href="/concepts/" class="nav-link">Concepts</a>
+                <a href="/articles/" class="nav-link">Articles</a>
+                <a href="/writer.html" class="nav-link nav-link--writer">Write</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <article class="problem" data-id="example-problem" data-difficulty="easy">
+                <header>
+                    <h1>Sum of Array Elements</h1>
+                    <div class="metadata">
+                        <span class="difficulty">Easy</span>
+                        <span class="topics">arrays, loops, basic-math</span>
+                    </div>
+                </header>
+                
+                <section class="description">
+                    <h2>Problem Description</h2>
+                    <p>Write a function that takes an array of integers and returns the sum of all elements in the array.</p>
+                    <p>The function should handle empty arrays by returning 0.</p>
+                </section>
+                
+                <section class="examples">
+                    <h2>Examples</h2>
+                    
+                    <div class="example">
+                        <h3>Example 1:</h3>
+                        <pre><code>Input: [1, 2, 3, 4, 5]
+Output: 15
+Explanation: 1 + 2 + 3 + 4 + 5 = 15</code></pre>
+                    </div>
+                    
+                    <div class="example">
+                        <h3>Example 2:</h3>
+                        <pre><code>Input: []
+Output: 0
+Explanation: Empty array returns 0</code></pre>
+                    </div>
+                    
+                    <div class="example">
+                        <h3>Example 3:</h3>
+                        <pre><code>Input: [-1, -2, -3]
+Output: -6
+Explanation: (-1) + (-2) + (-3) = -6</code></pre>
+                    </div>
+                </section>
+                
+                <section class="hints" data-optional="true">
+                    <h2>Hints</h2>
+                    <ul>
+                        <li>Consider using a loop to iterate through the array</li>
+                        <li>Initialize a sum variable to 0</li>
+                        <li>Don't forget to handle the empty array case</li>
+                        <li>Think about what happens with negative numbers</li>
+                    </ul>
+                </section>
+                
+                <section class="related-links">
+                    <h2>Related Content</h2>
+                    <ul>
+                        <li><a href="/concepts/arrays.html">Arrays Fundamentals</a></li>
+                        <li><a href="/concepts/loops.html">Loop Patterns</a></li>
+                        <li><a href="/problems/array-average.html">Array Average (Medium)</a></li>
+                    </ul>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CodeProb. A static, community-driven platform hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

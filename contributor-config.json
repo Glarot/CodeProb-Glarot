@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "description": "Configuration file for content contributors. Add your new content files here to ensure they appear in the appropriate indexes.",
+  "content": {
+    "problems": [
+      {
+        "filename": "example-problem.html",
+        "title": "Example Problem",
+        "difficulty": "easy",
+        "topics": ["arrays", "loops"],
+        "author": "CodeProb Team",
+        "dateAdded": "2024-01-01"
+      }
+    ],
+    "concepts": [
+      {
+        "filename": "example-concept.html",
+        "title": "Example Concept",
+        "category": "fundamentals",
+        "complexity": "beginner",
+        "author": "CodeProb Team",
+        "dateAdded": "2024-01-01"
+      }
+    ],
+    "articles": [
+      {
+        "filename": "example-article.html",
+        "title": "Example Article",
+        "tags": ["tutorial", "beginner"],
+        "author": "CodeProb Team",
+        "dateAdded": "2024-01-01"
+      }
+    ]
+  },
+  "instructions": {
+    "adding_content": "To add new content, simply add an entry to the appropriate array above with the required metadata fields.",
+    "required_fields": {
+      "problems": ["filename", "title", "difficulty", "topics", "author", "dateAdded"],
+      "concepts": ["filename", "title", "category", "complexity", "author", "dateAdded"],
+      "articles": ["filename", "title", "tags", "author", "dateAdded"]
+    },
+    "validation": "The content indexer will validate that files exist and metadata is complete before displaying content."
+  }
+}

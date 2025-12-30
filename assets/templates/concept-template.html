@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} - CodeProb</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="/">CodeProb</a>
+            </h1>
+            <nav class="main-nav">
+                <a href="/problems/" class="nav-link">Problems</a>
+                <a href="/concepts/" class="nav-link nav-link--active">Concepts</a>
+                <a href="/articles/" class="nav-link">Articles</a>
+                <a href="/writer.html" class="nav-link nav-link--writer">Write</a>
+                <button id="theme-toggle" class="theme-toggle">🌙 Dark</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <article class="concept" data-id="{{ID}}" data-category="{{CATEGORY}}">
+                <header>
+                    <h1>{{TITLE}}</h1>
+                    <div class="metadata">
+                        <span class="category">{{CATEGORY_DISPLAY}}</span>
+                        <span class="difficulty">{{COMPLEXITY_DISPLAY}}</span>
+                    </div>
+                </header>
+                
+                <section class="overview">
+                    <h2>Overview</h2>
+                    {{OVERVIEW}}
+                </section>
+                
+                <section class="explanation">
+                    <h2>Detailed Explanation</h2>
+                    {{EXPLANATION}}
+                </section>
+                
+                <section class="examples">
+                    <h2>Code Examples</h2>
+                    {{EXAMPLES}}
+                </section>
+                
+                <section class="related-problems">
+                    <h2>Practice Problems</h2>
+                    {{RELATED_PROBLEMS}}
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CodeProb. A static, community-driven platform hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Concept - CodeProb</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="/">CodeProb</a>
+            </h1>
+            <nav class="main-nav">
+                <a href="/problems/" class="nav-link">Problems</a>
+                <a href="/concepts/" class="nav-link nav-link--active">Concepts</a>
+                <a href="/articles/" class="nav-link">Articles</a>
+                <a href="/writer.html" class="nav-link nav-link--writer">Write</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <article class="concept" data-id="arrays-fundamentals" data-category="fundamentals">
+                <header>
+                    <h1>Arrays Fundamentals</h1>
+                    <div class="metadata">
+                        <span class="category">Fundamentals</span>
+                        <span class="difficulty">Beginner</span>
+                    </div>
+                </header>
+                
+                <section class="overview">
+                    <h2>Overview</h2>
+                    <p>Arrays are one of the most fundamental data structures in programming. They provide a way to store multiple values of the same type in a single variable, with each value accessible by its position (index) in the array.</p>
+                </section>
+                
+                <section class="explanation">
+                    <h2>Detailed Explanation</h2>
+                    
+                    <h3>What is an Array?</h3>
+                    <p>An array is a collection of elements stored in contiguous memory locations. Each element can be accessed using an index, which typically starts from 0 in most programming languages.</p>
+                    
+                    <h3>Key Characteristics</h3>
+                    <ul>
+                        <li><strong>Fixed Size:</strong> In many languages, arrays have a fixed size determined at creation</li>
+                        <li><strong>Homogeneous:</strong> All elements are of the same data type</li>
+                        <li><strong>Indexed Access:</strong> Elements are accessed using numerical indices</li>
+                        <li><strong>Contiguous Memory:</strong> Elements are stored in adjacent memory locations</li>
+                    </ul>
+                    
+                    <h3>Common Operations</h3>
+                    <ul>
+                        <li><strong>Access:</strong> Retrieve an element at a specific index - O(1)</li>
+                        <li><strong>Update:</strong> Modify an element at a specific index - O(1)</li>
+                        <li><strong>Traverse:</strong> Visit all elements in sequence - O(n)</li>
+                        <li><strong>Search:</strong> Find an element's position - O(n) for unsorted arrays</li>
+                    </ul>
+                </section>
+                
+                <section class="examples">
+                    <h2>Code Examples</h2>
+                    
+                    <h3>JavaScript</h3>
+                    <pre><code>// Creating arrays
+let numbers = [1, 2, 3, 4, 5];
+let fruits = ['apple', 'banana', 'orange'];
+let empty = [];
+
+// Accessing elements
+console.log(numbers[0]); // 1
+console.log(fruits[1]);  // 'banana'
+
+// Updating elements
+numbers[2] = 10;
+console.log(numbers); // [1, 2, 10, 4, 5]
+
+// Array length
+console.log(numbers.length); // 5</code></pre>
+                    
+                    <h3>Python</h3>
+                    <pre><code># Creating lists (Python's version of arrays)
+numbers = [1, 2, 3, 4, 5]
+fruits = ['apple', 'banana', 'orange']
+empty = []
+
+# Accessing elements
+print(numbers[0])  # 1
+print(fruits[1])   # 'banana'
+
+# Updating elements
+numbers[2] = 10
+print(numbers)     # [1, 2, 10, 4, 5]
+
+# List length
+print(len(numbers))  # 5</code></pre>
+                    
+                    <h3>Common Patterns</h3>
+                    <pre><code>// Iterating through an array
+for (let i = 0; i < numbers.length; i++) {
+    console.log(numbers[i]);
+}
+
+// Using forEach (JavaScript)
+numbers.forEach(num => console.log(num));
+
+// Finding sum of array elements
+let sum = 0;
+for (let num of numbers) {
+    sum += num;
+}
+console.log(sum);</code></pre>
+                </section>
+                
+                <section class="related-problems">
+                    <h2>Practice Problems</h2>
+                    <ul>
+                        <li><a href="/problems/example-problem.html">Sum of Array Elements (Easy)</a></li>
+                        <li><a href="/problems/array-maximum.html">Find Maximum Element (Easy)</a></li>
+                        <li><a href="/problems/array-reverse.html">Reverse Array (Medium)</a></li>
+                        <li><a href="/problems/two-sum.html">Two Sum Problem (Medium)</a></li>
+                    </ul>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CodeProb. A static, community-driven platform hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

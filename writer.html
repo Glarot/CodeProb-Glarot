@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Writer - CodeProb</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .writer-interface {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-type-tabs {
+            display: flex;
+            margin-bottom: 1em;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .tab-button {
+            padding: 0.5em 1em;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            cursor: pointer;
+            font-family: var(--font-ui);
+        }
+        
+        .tab-button.active {
+            background: var(--bg-primary);
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1em;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1em;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3em;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.5em;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            font-family: var(--font-mono);
+            resize: vertical;
+        }
+        
+        .form-actions {
+            margin-top: 2em;
+            padding-top: 1em;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .btn {
+            padding: 0.5em 1em;
+            margin-right: 0.5em;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            font-family: var(--font-ui);
+        }
+        
+        .btn:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .btn-primary {
+            background: var(--link-color);
+            color: white;
+            border-color: var(--link-color);
+        }
+        
+        .btn-primary:hover {
+            background: var(--link-hover);
+        }
+        
+        .preview-area {
+            margin-top: 2em;
+            padding: 1em;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            display: none;
+        }
+        
+        .preview-area.active {
+            display: block;
+        }
+        
+        .help-text {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            margin-top: 0.3em;
+        }
+        
+        .tags-input {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5em;
+            margin-top: 0.5em;
+        }
+        
+        .tag {
+            background: var(--bg-tertiary);
+            padding: 0.2em 0.5em;
+            border: 1px solid var(--border-color);
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="/">CodeProb</a>
+            </h1>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="problems/index.html" class="nav-link">Problems</a>
+                <a href="concepts/index.html" class="nav-link">Concepts</a>
+                <a href="articles/index.html" class="nav-link">Articles</a>
+                <a href="writer.html" class="nav-link nav-link--active nav-link--writer">Write</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="writer-interface">
+                <header class="page-header">
+                    <h2>Content Writer</h2>
+                    <p>Create programming problems, concepts, or articles for the CodeProb community.</p>
+                </header>
+
+                <div class="content-type-tabs">
+                    <button class="tab-button active" data-tab="problem">Problem</button>
+                    <button class="tab-button" data-tab="concept">Concept</button>
+                    <button class="tab-button" data-tab="article">Article</button>
+                </div>
+
+                <!-- Problem Form -->
+                <div id="problem-tab" class="tab-content active">
+                    <form id="problem-form">
+                        <div class="form-group">
+                            <label for="problem-title">Problem Title *</label>
+                            <input type="text" id="problem-title" name="title" required>
+                            <div class="help-text">A clear, descriptive title for your coding problem</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="problem-difficulty">Difficulty *</label>
+                            <select id="problem-difficulty" name="difficulty" required>
+                                <option value="">Select difficulty</option>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="problem-topics">Topics *</label>
+                            <input type="text" id="problem-topics" name="topics" required>
+                            <div class="help-text">Comma-separated topics (e.g., arrays, loops, strings)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="problem-description">Problem Description *</label>
+                            <textarea id="problem-description" name="description" required placeholder="Describe the problem clearly. What should the function do? What are the constraints?"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="problem-examples">Examples *</label>
+                            <textarea id="problem-examples" name="examples" required placeholder="Provide input/output examples:
+
+Example 1:
+Input: [1, 2, 3]
+Output: 6
+Explanation: Sum of all elements
+
+Example 2:
+Input: []
+Output: 0
+Explanation: Empty array returns 0"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="problem-hints">Hints (Optional)</label>
+                            <textarea id="problem-hints" name="hints" placeholder="Optional hints to help solve the problem:
+• Consider using a loop
+• Think about edge cases
+• What happens with negative numbers?"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="problem-related">Related Links (Optional)</label>
+                            <textarea id="problem-related" name="related" placeholder="Links to related concepts or problems:
+• /concepts/arrays.html - Arrays Fundamentals
+• /problems/array-max.html - Find Maximum Element"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="problem-author">Author *</label>
+                            <input type="text" id="problem-author" name="author" required>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Concept Form -->
+                <div id="concept-tab" class="tab-content">
+                    <form id="concept-form">
+                        <div class="form-group">
+                            <label for="concept-title">Concept Title *</label>
+                            <input type="text" id="concept-title" name="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="concept-category">Category *</label>
+                            <select id="concept-category" name="category" required>
+                                <option value="">Select category</option>
+                                <option value="fundamentals">Fundamentals</option>
+                                <option value="algorithms">Algorithms</option>
+                                <option value="data-structures">Data Structures</option>
+                                <option value="design-patterns">Design Patterns</option>
+                                <option value="best-practices">Best Practices</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="concept-complexity">Complexity *</label>
+                            <select id="concept-complexity" name="complexity" required>
+                                <option value="">Select complexity</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="concept-overview">Overview *</label>
+                            <textarea id="concept-overview" name="overview" required placeholder="Brief introduction to the concept. What is it and why is it important?"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="concept-explanation">Detailed Explanation *</label>
+                            <textarea id="concept-explanation" name="explanation" required placeholder="Comprehensive explanation of the concept. Include:
+• Key characteristics
+• How it works
+• When to use it
+• Common operations"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="concept-examples">Code Examples *</label>
+                            <textarea id="concept-examples" name="examples" required placeholder="Code examples in multiple languages:
+
+JavaScript:
+```javascript
+// Example code here
+```
+
+Python:
+```python
+# Example code here
+```"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="concept-problems">Related Problems (Optional)</label>
+                            <textarea id="concept-problems" name="problems" placeholder="Links to practice problems:
+• /problems/problem-001.html - Basic Problem
+• /problems/problem-002.html - Advanced Problem"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="concept-author">Author *</label>
+                            <input type="text" id="concept-author" name="author" required>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Article Form -->
+                <div id="article-tab" class="tab-content">
+                    <form id="article-form">
+                        <div class="form-group">
+                            <label for="article-title">Article Title *</label>
+                            <input type="text" id="article-title" name="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="article-tags">Tags *</label>
+                            <input type="text" id="article-tags" name="tags" required>
+                            <div class="help-text">Comma-separated tags (e.g., tutorial, javascript, beginner)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="article-content">Article Content *</label>
+                            <textarea id="article-content" name="content" required placeholder="Write your article content here. You can use:
+
+# Headings
+## Subheadings
+
+**Bold text** and *italic text*
+
+```javascript
+// Code blocks
+```
+
+- Bullet points
+- Lists
+
+Links: [text](url)"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="article-references">References (Optional)</label>
+                            <textarea id="article-references" name="references" placeholder="External links and citations:
+• [MDN Web Docs](https://developer.mozilla.org)
+• [Wikipedia Article](https://wikipedia.org)"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="article-author">Author *</label>
+                            <input type="text" id="article-author" name="author" required>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-primary" id="preview-btn">Preview</button>
+                    <button type="button" class="btn btn-primary" id="export-btn">Export HTML</button>
+                    <button type="button" class="btn" id="clear-btn">Clear Form</button>
+                </div>
+
+                <div id="preview-area" class="preview-area">
+                    <h3>Preview</h3>
+                    <div id="preview-content"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CodeProb. A static, community-driven platform hosted on GitHub Pages.</p>
+            <p><a href="/docs/contributing.html">Contribution Guidelines</a> | <a href="https://github.com/codeprob/codeprob">GitHub Repository</a></p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/writer.js"></script>
+</body>
+</html>

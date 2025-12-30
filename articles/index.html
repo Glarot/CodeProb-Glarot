@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles & Insights - CodeProb</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="/">CodeProb</a>
+            </h1>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../problems/index.html" class="nav-link">Problems</a>
+                <a href="../concepts/index.html" class="nav-link">Concepts</a>
+                <a href="index.html" class="nav-link nav-link--active">Articles</a>
+                <a href="../writer.html" class="nav-link nav-link--writer">Write</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h2>Articles & Insights</h2>
+                <p>Community-contributed articles, tutorials, and insights on programming topics.</p>
+            </header>
+
+            <div class="content-filters">
+                <div class="filter-group">
+                    <label for="tag-filter">Tags:</label>
+                    <select id="tag-filter">
+                        <option value="">All Tags</option>
+                        <!-- Tags will be populated dynamically -->
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="author-filter">Author:</label>
+                    <select id="author-filter">
+                        <option value="">All Authors</option>
+                        <!-- Authors will be populated dynamically -->
+                    </select>
+                </div>
+            </div>
+
+            <section class="content-list" id="articles-list">
+                <!-- Articles will be loaded dynamically by content-indexer.js -->
+                <div class="loading-message">Loading articles...</div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CodeProb. A static, community-driven platform hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/content-indexer.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Initialize articles listing
+        document.addEventListener('DOMContentLoaded', function() {
+            ContentIndexer.loadContent('articles', 'articles-list');
+        });
+    </script>
+</body>
+</html>
