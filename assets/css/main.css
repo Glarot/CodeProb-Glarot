@@ -521,7 +521,7 @@ article section h3 {
 
 /* Writer Interface Styles */
 .writer-interface {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -594,6 +594,170 @@ article section h3 {
     font-family: var(--font-mono);
     resize: vertical;
     line-height: 1.5;
+}
+
+/* Markdown Toolbar */
+.markdown-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    margin-bottom: 0;
+}
+
+.markdown-toolbar button {
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    color: var(--text-primary);
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.markdown-toolbar button:hover {
+    background: var(--bg-secondary);
+    border-color: var(--link-color);
+}
+
+.toolbar-separator {
+    color: var(--text-muted);
+    margin: 0 0.25rem;
+    align-self: center;
+}
+
+/* Split Pane Markdown Editor */
+.markdown-editor {
+    display: flex;
+    height: 400px;
+    border: 1px solid var(--border-color);
+    border-radius: 0 0 6px 6px;
+    overflow: hidden;
+}
+
+.editor-pane,
+.preview-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-pane {
+    border-right: 1px solid var(--border-color);
+}
+
+.pane-header {
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.markdown-editor textarea {
+    flex: 1;
+    border: none;
+    border-radius: 0;
+    resize: none;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    padding: 1rem;
+}
+
+.live-preview-content {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background: var(--bg-primary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* Preview content styling */
+.live-preview-content h1,
+.live-preview-content h2,
+.live-preview-content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.live-preview-content h1:first-child,
+.live-preview-content h2:first-child,
+.live-preview-content h3:first-child {
+    margin-top: 0;
+}
+
+.live-preview-content p {
+    margin-bottom: 1rem;
+}
+
+.live-preview-content ul,
+.live-preview-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.live-preview-content blockquote {
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid var(--link-color);
+    background: var(--bg-secondary);
+    font-style: italic;
+}
+
+.live-preview-content code {
+    background: var(--bg-code);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.live-preview-content pre {
+    background: var(--bg-code);
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.live-preview-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.live-preview-content mark {
+    background: var(--warning-color);
+    color: var(--bg-primary);
+    padding: 0.1rem 0.2rem;
+    border-radius: 2px;
+}
+
+.live-preview-content del {
+    color: var(--text-muted);
+}
+
+.live-preview-content hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+.live-preview-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 1rem 0;
 }
 
 .form-actions {
@@ -685,6 +849,38 @@ article section h3 {
     .content-metadata {
         flex-direction: column;
         gap: 0.5rem;
+    }
+    
+    /* Mobile markdown editor */
+    .markdown-editor {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .editor-pane {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .markdown-editor textarea {
+        min-height: 200px;
+    }
+    
+    .live-preview-content {
+        min-height: 200px;
+    }
+    
+    .markdown-toolbar {
+        gap: 0.125rem;
+    }
+    
+    .markdown-toolbar button {
+        padding: 0.25rem 0.375rem;
+        font-size: 0.7rem;
+    }
+    
+    .writer-interface {
+        max-width: 100%;
     }
 }
 

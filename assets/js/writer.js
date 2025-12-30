@@ -52,6 +52,128 @@
             document.getElementById('clear-btn').addEventListener('click', () => {
                 this.clearCurrentForm();
             });
+            
+            // Setup markdown toolbar
+            this.setupMarkdownToolbar();
+            
+            // Setup live preview for article content
+            this.setupLivePreview();
+        },
+        
+        // Setup markdown toolbar functionality
+        setupMarkdownToolbar: function() {
+            const toolbar = document.getElementById('markdown-toolbar');
+            if (!toolbar) return;
+            
+            toolbar.addEventListener('click', (e) => {
+                if (e.target.dataset.action) {
+                    this.insertMarkdown(e.target.dataset.action);
+                }
+            });
+        },
+        
+        // Setup live preview for article content
+        setupLivePreview: function() {
+            const contentTextarea = document.getElementById('article-content');
+            const livePreview = document.getElementById('live-preview');
+            
+            if (contentTextarea && livePreview) {
+                contentTextarea.addEventListener('input', () => {
+                    const content = contentTextarea.value;
+                    livePreview.innerHTML = this.processContent(content);
+                });
+                
+                // Initial render
+                livePreview.innerHTML = this.processContent(contentTextarea.value);
+            }
+        },
+        
+        // Insert markdown syntax at cursor position
+        insertMarkdown: function(action) {
+            const textarea = document.getElementById('article-content');
+            if (!textarea) return;
+            
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end);
+            const beforeText = textarea.value.substring(0, start);
+            const afterText = textarea.value.substring(end);
+            
+            let insertText = '';
+            let cursorOffset = 0;
+            
+            switch (action) {
+                case 'bold':
+                    insertText = `**${selectedText || 'bold text'}**`;
+                    cursorOffset = selectedText ? 0 : -9;
+                    break;
+                case 'italic':
+                    insertText = `*${selectedText || 'italic text'}*`;
+                    cursorOffset = selectedText ? 0 : -12;
+                    break;
+                case 'code':
+                    insertText = `\`${selectedText || 'code'}\``;
+                    cursorOffset = selectedText ? 0 : -5;
+                    break;
+                case 'link':
+                    insertText = `[${selectedText || 'link text'}](url)`;
+                    cursorOffset = selectedText ? -4 : -13;
+                    break;
+                case 'image':
+                    insertText = `![${selectedText || 'alt text'}](image-url)`;
+                    cursorOffset = selectedText ? -12 : -21;
+                    break;
+                case 'h1':
+                    insertText = `# ${selectedText || 'Heading 1'}`;
+                    cursorOffset = selectedText ? 0 : -10;
+                    break;
+                case 'h2':
+                    insertText = `## ${selectedText || 'Heading 2'}`;
+                    cursorOffset = selectedText ? 0 : -10;
+                    break;
+                case 'h3':
+                    insertText = `### ${selectedText || 'Heading 3'}`;
+                    cursorOffset = selectedText ? 0 : -10;
+                    break;
+                case 'ul':
+                    insertText = `- ${selectedText || 'List item'}`;
+                    cursorOffset = selectedText ? 0 : -9;
+                    break;
+                case 'ol':
+                    insertText = `1. ${selectedText || 'List item'}`;
+                    cursorOffset = selectedText ? 0 : -9;
+                    break;
+                case 'quote':
+                    insertText = `> ${selectedText || 'Quote'}`;
+                    cursorOffset = selectedText ? 0 : -5;
+                    break;
+                case 'code-block':
+                    insertText = `\`\`\`javascript\n${selectedText || 'code here'}\n\`\`\``;
+                    cursorOffset = selectedText ? 0 : -13;
+                    break;
+                case 'highlight':
+                    insertText = `==${selectedText || 'highlighted text'}==`;
+                    cursorOffset = selectedText ? 0 : -18;
+                    break;
+                case 'strikethrough':
+                    insertText = `~~${selectedText || 'strikethrough'}~~`;
+                    cursorOffset = selectedText ? 0 : -15;
+                    break;
+                case 'hr':
+                    insertText = '\n---\n';
+                    cursorOffset = 0;
+                    break;
+            }
+            
+            textarea.value = beforeText + insertText + afterText;
+            
+            // Set cursor position
+            const newCursorPos = start + insertText.length + cursorOffset;
+            textarea.setSelectionRange(newCursorPos, newCursorPos);
+            textarea.focus();
+            
+            // Trigger live preview update
+            textarea.dispatchEvent(new Event('input'));
         },
 
         // Load HTML templates
@@ -296,27 +418,70 @@
             }
         },
 
-        // Process content for HTML output
+        // Enhanced markdown processor with full GitHub-style support
         processContent: function(content) {
             if (!content) return '';
             
-            // Convert markdown-like syntax to HTML
-            return content
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                .replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>')
-                .replace(/`([^`]+)`/g, '<code>$1</code>')
-                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-                .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-                .replace(/^# (.*$)/gm, '<h1>$1</h1>')
-                .replace(/^\• (.*$)/gm, '<li>$1</li>')
-                .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
-                .replace(/\n\n/g, '</p><p>')
-                .replace(/^(?!<[h|u|p|l])/gm, '<p>')
-                .replace(/(?<!>)$/gm, '</p>')
-                .replace(/<p><\/p>/g, '')
-                .replace(/<p>(<[h|u])/g, '$1')
-                .replace(/(<\/[h|u]>)<\/p>/g, '$1');
+            // Convert full markdown syntax to HTML
+            let html = content;
+            
+            // Code blocks (must be first to avoid conflicts)
+            html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre><code class="language-$1">$2</code></pre>');
+            
+            // Inline code
+            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+            
+            // Headers
+            html = html.replace(/^### (.*$)/gm, '<h3>$1</h3>');
+            html = html.replace(/^## (.*$)/gm, '<h2>$1</h2>');
+            html = html.replace(/^# (.*$)/gm, '<h1>$1</h1>');
+            
+            // Bold and italic
+            html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            
+            // Links
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+            
+            // Images
+            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
+            
+            // Strikethrough
+            html = html.replace(/~~(.*?)~~/g, '<del>$1</del>');
+            
+            // Highlight (GitHub style)
+            html = html.replace(/==(.*?)==/g, '<mark>$1</mark>');
+            
+            // Lists
+            html = html.replace(/^\* (.*$)/gm, '<li>$1</li>');
+            html = html.replace(/^- (.*$)/gm, '<li>$1</li>');
+            html = html.replace(/^\+ (.*$)/gm, '<li>$1</li>');
+            html = html.replace(/^\d+\. (.*$)/gm, '<li>$1</li>');
+            
+            // Wrap consecutive list items in ul/ol
+            html = html.replace(/(<li>.*<\/li>)/s, function(match) {
+                return '<ul>' + match + '</ul>';
+            });
+            
+            // Blockquotes
+            html = html.replace(/^> (.*$)/gm, '<blockquote>$1</blockquote>');
+            
+            // Horizontal rules
+            html = html.replace(/^---$/gm, '<hr>');
+            html = html.replace(/^\*\*\*$/gm, '<hr>');
+            
+            // Line breaks and paragraphs
+            html = html.replace(/\n\n/g, '</p><p>');
+            html = html.replace(/^(?!<[h|u|p|l|b])/gm, '<p>');
+            html = html.replace(/(?<!>)$/gm, '</p>');
+            
+            // Clean up empty paragraphs and fix nesting
+            html = html.replace(/<p><\/p>/g, '');
+            html = html.replace(/<p>(<[h|u|b])/g, '$1');
+            html = html.replace(/(<\/[h|u|b]>)<\/p>/g, '$1');
+            
+            return html;
         },
 
         // Process examples for problems

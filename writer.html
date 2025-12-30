@@ -318,21 +318,63 @@ Python:
 
                         <div class="form-group">
                             <label for="article-content">Article Content *</label>
-                            <textarea id="article-content" name="content" required placeholder="Write your article content here. You can use:
+                            
+                            <!-- Markdown Toolbar -->
+                            <div id="markdown-toolbar" class="markdown-toolbar">
+                                <button type="button" data-action="bold" title="Bold">**B**</button>
+                                <button type="button" data-action="italic" title="Italic">*I*</button>
+                                <button type="button" data-action="code" title="Inline Code">`</button>
+                                <button type="button" data-action="link" title="Link">🔗</button>
+                                <button type="button" data-action="image" title="Image">🖼️</button>
+                                <span class="toolbar-separator">|</span>
+                                <button type="button" data-action="h1" title="Heading 1">H1</button>
+                                <button type="button" data-action="h2" title="Heading 2">H2</button>
+                                <button type="button" data-action="h3" title="Heading 3">H3</button>
+                                <span class="toolbar-separator">|</span>
+                                <button type="button" data-action="ul" title="Bullet List">• List</button>
+                                <button type="button" data-action="ol" title="Numbered List">1. List</button>
+                                <button type="button" data-action="quote" title="Quote">❝</button>
+                                <span class="toolbar-separator">|</span>
+                                <button type="button" data-action="code-block" title="Code Block">{ }</button>
+                                <button type="button" data-action="highlight" title="Highlight">==H==</button>
+                                <button type="button" data-action="strikethrough" title="Strikethrough">~~S~~</button>
+                                <button type="button" data-action="hr" title="Horizontal Rule">---</button>
+                            </div>
+                            
+                            <!-- Split Pane Editor -->
+                            <div class="markdown-editor">
+                                <div class="editor-pane">
+                                    <div class="pane-header">Editor</div>
+                                    <textarea id="article-content" name="content" required placeholder="Write your article content here using Markdown syntax:
 
-# Headings
-## Subheadings
+# Main Heading
+## Subheading
 
 **Bold text** and *italic text*
 
+[Link text](https://example.com)
+
 ```javascript
-// Code blocks
+// Code blocks with syntax highlighting
+console.log('Hello, world!');
 ```
 
 - Bullet points
-- Lists
+- More items
 
-Links: [text](url)"></textarea>
+> Blockquotes for important notes
+
+==Highlighted text== and ~~strikethrough~~
+
+---
+
+Images: ![Alt text](image-url)"></textarea>
+                                </div>
+                                <div class="preview-pane">
+                                    <div class="pane-header">Live Preview</div>
+                                    <div id="live-preview" class="live-preview-content"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
