@@ -24,13 +24,6 @@
     ],
     "articles": [
       {
-        "filename": "example-article.html",
-        "title": "Example Article",
-        "tags": ["tutorial", "beginner"],
-        "author": "CodeProb Team",
-        "dateAdded": "2024-01-01"
-      },
-      {
         "filename": "article-welcome-to-codeprob.html",
         "title": "Welcome To CodeProb",
         "tags": ["Tutorial", "Beginner","Welcome","CodeProb"],
