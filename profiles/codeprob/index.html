@@ -1,23 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>codeprob-team - CodeProb Profile</title>
     <link rel="stylesheet" href="../../assets/css/main.css">
-    <style>
-        .profile-container { max-width: 800px; margin: 0 auto; }
-        .profile-header { display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-color); }
-        .profile-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; background: var(--bg-tertiary); }
-        .profile-info h1 { margin: 0 0 0.5rem 0; font-size: 2.5rem; }
-        .profile-tagline { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 1rem; }
-        .social-links { display: flex; gap: 1rem; }
-        .social-btn { padding: 0.5rem 1rem; background: var(--bg-secondary); border-radius: 4px; text-decoration: none; font-size: 0.9rem; border: 1px solid var(--border-color); }
-        .profile-section { margin-top: 3rem; }
-        .profile-section h2 { border-bottom: 2px solid var(--bg-secondary); padding-bottom: 0.5rem; }
-        .content-list { display: grid; gap: 1rem; }
-    </style>
 </head>
+
 <body>
     <header class="site-header">
         <div class="container">
@@ -33,86 +23,137 @@
     <main class="main-content">
         <div class="container profile-container" data-username="codeprob" data-display-name="codeprob-team">
             <header class="profile-header">
-                <img src="https://i.imgur.com/uJHoEx8_d.webp?maxwidth=760&fidelity=grand" alt="codeprob-team" class="profile-avatar" onerror="this.src='../../assets/images/default-profile.png'">
+                <img src="https://i.imgur.com/uJHoEx8_d.webp?maxwidth=760&fidelity=grand" alt="codeprob-team"
+                    class="profile-avatar" onerror="this.src='../../assets/images/default-profile.png'">
                 <div class="profile-info">
                     <h1>codeprob-team</h1>
                     <div class="profile-tagline">CodeProb Admin | CodeProb Team</div>
-                    <div class="social-links"><a href="https://codeprob.github.io/" target="_blank" class="social-btn">CodeProb</a></div>
+                    <div class="social-links"><a href="https://codeprob.github.io/" target="_blank"
+                            class="social-btn">CodeProb</a></div>
                 </div>
             </header>
-            
+
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="count-problems">0</span>
+                    <span class="stat-label">Problems</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="count-articles">0</span>
+                    <span class="stat-label">Articles</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="count-concepts">0</span>
+                    <span class="stat-label">Concepts</span>
+                </div>
+            </div>
+
             <section class="profile-bio">
                 <h2>About</h2>
-                <div class="bio-content"><p>/$$$                  /$           /$$$$                     /$       /$                    </p>
-<p> /$__  $                | $          | $__  $                   | $      |__/                    </p>
-<p>| $  \__/  /$$$   /$$$$  /$$$ | $  \ $ /$$$   /$$$ | $$$$  /$ /$$$$   /$$$ </p>
-<p>| $       /$__  $ /$__  $ /$__  $| $$$$//$__  $ /$__  $| $__  $| $| $__  $ /$__  $</p>
-<p>| $      | $  \ $| $  | $| $$$$| $____/| $  \__/| $  \ $| $  \ $| $| $  \ $| $  \ $</p>
-<p>| $    $| $  | $| $  | $| $_____/| $     | $      | $  | $| $  | $| $| $  | $| $  | $</p>
-<p>|  $$$/|  $$$/|  $$$$|  $$$$| $     | $      |  $$$/| $$$$/| $| $  | $|  $$$$</p>
-<p> \______/  \______/  \_______/ \_______/|__/     |__/       \______/ |_______/ |__/|__/  |__/ \____  $</p>
-<p>                                                                                              /$  \ $</p>
-<p>                                                                                             |  $$$/</p>
-<p>                                                                                              \______/</p></div>
+                <div class="bio-content">
+                    <p>/$$$ /$ /$$$$ /$ /$ </p>
+                    <p> /$__ $ | $ | $__ $ | $ |__/ </p>
+                    <p>| $ \__/ /$$$ /$$$$ /$$$ | $ \ $ /$$$ /$$$ | $$$$ /$ /$$$$ /$$$ </p>
+                    <p>| $ /$__ $ /$__ $ /$__ $| $$$$//$__ $ /$__ $| $__ $| $| $__ $ /$__ $</p>
+                    <p>| $ | $ \ $| $ | $| $$$$| $____/| $ \__/| $ \ $| $ \ $| $| $ \ $| $ \ $</p>
+                    <p>| $ $| $ | $| $ | $| $_____/| $ | $ | $ | $| $ | $| $| $ | $| $ | $</p>
+                    <p>| $$$/| $$$/| $$$$| $$$$| $ | $ | $$$/| $$$$/| $| $ | $| $$$$</p>
+                    <p> \______/ \______/ \_______/ \_______/|__/ |__/ \______/ |_______/ |__/|__/ |__/ \____ $</p>
+                    <p> /$ \ $</p>
+                    <p> | $$$/</p>
+                    <p> \______/</p>
+                </div>
             </section>
-            
+
             <section class="profile-section">
                 <h2>Contributions</h2>
+                <div class="profile-tabs">
+                    <button class="profile-tab-btn active" data-type="all">All</button>
+                    <button class="profile-tab-btn" data-type="problems">Problems</button>
+                    <button class="profile-tab-btn" data-type="articles">Articles</button>
+                    <button class="profile-tab-btn" data-type="concepts">Concepts</button>
+                </div>
                 <div id="contributions-list" class="content-list">
                     <p>Loading contributions...</p>
                 </div>
             </section>
         </div>
     </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CodeProb. A static, community-driven platform hosted on GitHub Pages.</p>
+        </div>
+    </footer>
     <script src="../../assets/js/main.js"></script>
     <script>
-        // Profile-specific logic to load contributions
         document.addEventListener('DOMContentLoaded', async () => {
             const container = document.getElementById('contributions-list');
-            const username = document.querySelector('.profile-container').dataset.username;
-            const displayName = document.querySelector('.profile-container').dataset.displayName;
-            
+            const profileContainer = document.querySelector('.profile-container');
+            const username = profileContainer.dataset.username;
+            const displayName = profileContainer.dataset.displayName;
+            const tabBtns = document.querySelectorAll('.profile-tab-btn');
+
+            let allContent = [];
+
             try {
-                // Fetch content config
                 const response = await fetch('../../contributor-config.json');
                 const config = await response.json();
-                
-                const allContent = [];
-                
-                // Helper to process items
+
                 const processItems = (items, type) => {
+                    if (!items) return;
                     items.forEach(item => {
-                        // Check fuzzy match on author name since we don't have linking IDs yet
-                        if (item.author.toLowerCase() === displayName.toLowerCase() || 
+                        if (item.author.toLowerCase() === displayName.toLowerCase() ||
                             item.author.toLowerCase() === username.toLowerCase()) {
                             item.type = type;
                             allContent.push(item);
                         }
                     });
                 };
-                
-                if (config.content.problems) processItems(config.content.problems, 'problems');
-                if (config.content.concepts) processItems(config.content.concepts, 'concepts');
-                if (config.content.articles) processItems(config.content.articles, 'articles');
-                
-                if (allContent.length === 0) {
-                    container.innerHTML = '<p>No contributions found yet.</p>';
-                    return;
-                }
-                
-                // Sort by new
-                allContent.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
-                
-                container.innerHTML = allContent.map(item => `
-                    <div class="content-item">
-                        <span class="content-type-badge">${item.type.slice(0, -1)}</span>
-                        <h3><a href="../../${item.type}/${item.filename}">${item.title}</a></h3>
-                        <div class="content-metadata">
-                            <span>${item.dateAdded}</span>
-                        </div>
-                    </div>
-                `).join('');
-                
+
+                processItems(config.content.problems, 'problems');
+                processItems(config.content.articles, 'articles');
+                processItems(config.content.concepts, 'concepts');
+
+                const updateStats = () => {
+                    const counts = {
+                        problems: allContent.filter(i => i.type === 'problems').length,
+                        articles: allContent.filter(i => i.type === 'articles').length,
+                        concepts: allContent.filter(i => i.type === 'concepts').length
+                    };
+                    document.getElementById('count-problems').textContent = counts.problems;
+                    document.getElementById('count-articles').textContent = counts.articles;
+                    document.getElementById('count-concepts').textContent = counts.concepts;
+                };
+
+                updateStats();
+
+                const renderContent = (type = 'all') => {
+                    const filtered = type === 'all' ? allContent : allContent.filter(i => i.type === type);
+                    if (filtered.length === 0) {
+                        container.innerHTML = '<p>No ' + (type === 'all' ? '' : type) + ' contributions found yet.</p>';
+                        return;
+                    }
+                    filtered.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
+                    container.innerHTML = filtered.map(item =>
+                        '<div class="content-item">' +
+                        '<span class="content-type-badge">' + item.type.slice(0, -1) + '</span>' +
+                        '<h3><a href="../../' + item.type + '/' + item.filename + '">' + item.title + '</a></h3>' +
+                        '<div class="content-metadata">' +
+                        '<span>' + item.dateAdded + '</span>' +
+                        '</div>' +
+                        '</div>'
+                    ).join('');
+                };
+
+                tabBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        tabBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        renderContent(btn.dataset.type);
+                    });
+                });
+
+                renderContent();
             } catch (e) {
                 console.error(e);
                 container.innerHTML = '<p>Error loading contributions.</p>';
@@ -120,4 +161,5 @@
         });
     </script>
 </body>
+
 </html>
