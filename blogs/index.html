@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs - CodeProb</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">
+                <a href="../index.html">CodeProb</a>
+            </h1>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../problems/index.html" class="nav-link">Problems</a>
+                <a href="../concepts/index.html" class="nav-link">Concepts</a>
+                <a href="../articles/index.html" class="nav-link">Articles</a>
+                <a href="index.html" class="nav-link nav-link--active">Blogs</a>
+                <a href="../writer.html" class="nav-link nav-link--writer">Write</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h2>Community Blogs</h2>
+                <p>Personal thoughts, experiences, and insights from our community members. Share your coding journey, lessons learned, and perspectives on programming.</p>
+            </div>
+
+            <div class="content-filters">
+                <div class="filter-group">
+                    <label for="tag-filter">Filter by Tag:</label>
+                    <select id="tag-filter">
+                        <option value="">All Tags</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="author-filter">Filter by Author:</label>
+                    <select id="author-filter">
+                        <option value="">All Authors</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sort-filter">Sort by:</label>
+                    <select id="sort-filter">
+                        <option value="date-desc">Newest First</option>
+                        <option value="date-asc">Oldest First</option>
+                        <option value="title">Title A-Z</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="blogs-container">
+                <div class="loading-message">
+                    Loading blogs...
+                </div>
+            </div>
+
+            <div class="getting-started">
+                <h3>Share Your Thoughts</h3>
+                <p>Blogs are a place for personal expression and sharing experiences. Unlike articles which are more formal and educational, blogs are perfect for:</p>
+                <ul>
+                    <li><strong>Personal coding journeys</strong> - Share your learning experiences and milestones</li>
+                    <li><strong>Project reflections</strong> - Discuss challenges and solutions from your projects</li>
+                    <li><strong>Industry thoughts</strong> - Your perspectives on programming trends and technologies</li>
+                    <li><strong>Career insights</strong> - Tips and experiences from your professional journey</li>
+                    <li><strong>Quick tips</strong> - Short, practical advice and discoveries</li>
+                </ul>
+                <p>Ready to share your thoughts? <a href="../writer.html">Start writing your blog post</a> using our Writer interface.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 CodeProb. A community-driven programming knowledge platform.</p>
+            <p>
+                <a href="https://github.com/CodeProb/CodeProb">GitHub</a> |
+                <a href="../docs/contributing.md">Contributing</a> |
+                <a href="../LICENSE">License</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/content-indexer.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            CodeProb.init();
+            ContentIndexer.loadContent('blogs', 'blogs-container');
+        });
+    </script>
+</body>
+</html>

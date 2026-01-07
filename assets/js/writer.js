@@ -419,6 +419,7 @@
                 <a href="../../problems/index.html" class="nav-link">Problems</a>
                 <a href="../../concepts/index.html" class="nav-link">Concepts</a>
                 <a href="../../articles/index.html" class="nav-link">Articles</a>
+                <a href="../../blogs/index.html" class="nav-link">Blogs</a>
                 <a href="../../writer.html" class="nav-link">Write</a>
             </nav>
         </div>
@@ -440,12 +441,16 @@
                     <span class="stat-label">Problems</span>
                 </div>
                 <div class="stat-item">
+                    <span class="stat-value" id="count-concepts">0</span>
+                    <span class="stat-label">Concepts</span>
+                </div>
+                <div class="stat-item">
                     <span class="stat-value" id="count-articles">0</span>
                     <span class="stat-label">Articles</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-value" id="count-concepts">0</span>
-                    <span class="stat-label">Concepts</span>
+                    <span class="stat-value" id="count-blogs">0</span>
+                    <span class="stat-label">Blogs</span>
                 </div>
             </div>
             
@@ -459,8 +464,9 @@
                 <div class="profile-tabs">
                     <button class="profile-tab-btn active" data-type="all">All</button>
                     <button class="profile-tab-btn" data-type="problems">Problems</button>
-                    <button class="profile-tab-btn" data-type="articles">Articles</button>
                     <button class="profile-tab-btn" data-type="concepts">Concepts</button>
+                    <button class="profile-tab-btn" data-type="articles">Articles</button>
+                    <button class="profile-tab-btn" data-type="blogs">Blogs</button>
                 </div>
                 <div id="contributions-list" class="content-list">
                     <p>Loading contributions...</p>
@@ -500,18 +506,21 @@
                 };
                 
                 processItems(config.content.problems, 'problems');
-                processItems(config.content.articles, 'articles');
                 processItems(config.content.concepts, 'concepts');
+                processItems(config.content.articles, 'articles');
+                processItems(config.content.blogs, 'blogs');
                 
                 const updateStats = () => {
                     const counts = {
                         problems: allContent.filter(i => i.type === 'problems').length,
+                        concepts: allContent.filter(i => i.type === 'concepts').length,
                         articles: allContent.filter(i => i.type === 'articles').length,
-                        concepts: allContent.filter(i => i.type === 'concepts').length
+                        blogs: allContent.filter(i => i.type === 'blogs').length
                     };
                     document.getElementById('count-problems').textContent = counts.problems;
-                    document.getElementById('count-articles').textContent = counts.articles;
                     document.getElementById('count-concepts').textContent = counts.concepts;
+                    document.getElementById('count-articles').textContent = counts.articles;
+                    document.getElementById('count-blogs').textContent = counts.blogs;
                 };
                 
                 updateStats();
@@ -547,6 +556,68 @@
                 console.error(e);
                 container.innerHTML = '<p>Error loading contributions.</p>';
             }
+        });
+    </script>
+</body>
+</html>`,
+                'blog': `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} - CodeProb</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title"><a href="../index.html">CodeProb</a></h1>
+            <nav class="main-nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../problems/index.html" class="nav-link">Problems</a>
+                <a href="../concepts/index.html" class="nav-link">Concepts</a>
+                <a href="../articles/index.html" class="nav-link">Articles</a>
+                <a href="index.html" class="nav-link nav-link--active">Blogs</a>
+                <a href="../writer.html" class="nav-link nav-link--writer">Write</a>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="container">
+            <article class="blog" data-id="{{ID}}" data-author="{{AUTHOR_ID}}">
+                <header>
+                    <h1>{{TITLE}}</h1>
+                    <div class="metadata">
+                        <span class="author">{{AUTHOR}}</span>
+                        <span class="date">{{DATE}}</span>
+                        <span class="read-time">{{READ_TIME}}</span>
+                        <span class="tags">{{TAGS}}</span>
+                    </div>
+                </header>
+                <section class="content">
+                    {{CONTENT}}
+                </section>
+                <section class="related-links">
+                    <h3>Related Content</h3>
+                    {{RELATED_LINKS}}
+                </section>
+            </article>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 CodeProb. A community-driven programming knowledge platform.</p>
+            <p>
+                <a href="https://github.com/CodeProb/CodeProb">GitHub</a> |
+                <a href="../docs/contributing.md">Contributing</a> |
+                <a href="../LICENSE">License</a>
+            </p>
+        </div>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            CodeProb.init();
         });
     </script>
 </body>
@@ -599,6 +670,12 @@
                     if (!data.content) errors.push('Content is required');
                     break;
 
+                case 'blog':
+                    if (!data.tags) errors.push('Tags are required');
+                    if (!data.content) errors.push('Content is required');
+                    if (!data.readTime) errors.push('Read time is required');
+                    break;
+
                 case 'profile':
                     if (!data.username) errors.push('Username is required');
                     if (!data.username.match(/^[a-z0-9-]+$/)) errors.push('Username must contain only lowercase letters, numbers, and hyphens');
@@ -634,6 +711,8 @@
                     return `${id}.html`;
                 case 'article':
                     return `article-${id}.html`;
+                case 'blog':
+                    return `blog-${id}.html`;
                 default:
                     return `${id}.html`;
             }
@@ -947,6 +1026,14 @@
                     html = html.replace(/\{\{REFERENCES\}\}/g, this.processRelatedLinks(data.references));
                     break;
 
+                case 'blog':
+                    html = html.replace(/\{\{AUTHOR_ID\}\}/g, this.generateId(data.author));
+                    html = html.replace(/\{\{TAGS\}\}/g, data.tags);
+                    html = html.replace(/\{\{READ_TIME\}\}/g, data.readTime);
+                    html = html.replace(/\{\{CONTENT\}\}/g, this.processContent(data.content));
+                    html = html.replace(/\{\{RELATED_LINKS\}\}/g, this.processRelatedLinks(data.related));
+                    break;
+
                 case 'profile':
                     html = html.replace(/\{\{USERNAME\}\}/g, data.username);
                     html = html.replace(/\{\{DISPLAY_NAME\}\}/g, data.name);
@@ -1022,6 +1109,11 @@
 
                 case 'article':
                     entry.tags = data.tags.split(',').map(t => t.trim());
+                    break;
+
+                case 'blog':
+                    entry.tags = data.tags.split(',').map(t => t.trim());
+                    entry.readTime = data.readTime;
                     break;
             }
 

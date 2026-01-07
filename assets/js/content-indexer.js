@@ -10,7 +10,7 @@
         // Get the correct config path based on current location
         getConfigPath: function() {
             const currentPath = window.location.pathname;
-            if (currentPath.includes('/problems/') || currentPath.includes('/concepts/') || currentPath.includes('/articles/')) {
+            if (currentPath.includes('/problems/') || currentPath.includes('/concepts/') || currentPath.includes('/articles/') || currentPath.includes('/blogs/')) {
                 return '../contributor-config.json';
             }
             return './contributor-config.json';
@@ -69,7 +69,7 @@
             // Determine the correct path prefix based on current location
             const currentPath = window.location.pathname;
             let pathPrefix = './';
-            if (currentPath.includes('/problems/') || currentPath.includes('/concepts/') || currentPath.includes('/articles/')) {
+            if (currentPath.includes('/problems/') || currentPath.includes('/concepts/') || currentPath.includes('/articles/') || currentPath.includes('/blogs/')) {
                 pathPrefix = '../';
             }
             
@@ -129,7 +129,7 @@
             // Determine the correct path based on current location
             const currentPath = window.location.pathname;
             let linkPath = `${type}/${item.filename}`;
-            if (currentPath.includes('/problems/') || currentPath.includes('/concepts/') || currentPath.includes('/articles/')) {
+            if (currentPath.includes('/problems/') || currentPath.includes('/concepts/') || currentPath.includes('/articles/') || currentPath.includes('/blogs/')) {
                 linkPath = `../${type}/${item.filename}`;
             }
             
@@ -153,6 +153,10 @@
                     'complexity-filter': 'complexity'
                 },
                 'articles': {
+                    'tag-filter': 'tags',
+                    'author-filter': 'author'
+                },
+                'blogs': {
                     'tag-filter': 'tags',
                     'author-filter': 'author'
                 }
@@ -281,7 +285,8 @@
             const sectionMappings = {
                 'problems': ['header', '.description', '.examples'],
                 'concepts': ['header', '.overview', '.explanation'],
-                'articles': ['header', '.content']
+                'articles': ['header', '.content'],
+                'blogs': ['header', '.content']
             };
             
             return sectionMappings[contentType] || [];

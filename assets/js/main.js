@@ -125,7 +125,7 @@
             // Determine the correct path based on current location
             const currentPath = window.location.pathname;
             let linkPath = `${type}/${item.filename}`;
-            if (currentPath.includes('/problems/') || currentPath.includes('/concepts/') || currentPath.includes('/articles/')) {
+            if (currentPath.includes('/problems/') || currentPath.includes('/concepts/') || currentPath.includes('/articles/') || currentPath.includes('/blogs/')) {
                 linkPath = `../${type}/${item.filename}`;
             }
 
@@ -163,6 +163,16 @@
                         metadata.push(`<span class="tags">${item.tags.join(', ')}</span>`);
                     }
                     break;
+
+                case 'blogs':
+                    metadata.push(`<span class="author">${item.author}</span>`);
+                    if (item.readTime) {
+                        metadata.push(`<span class="read-time">${item.readTime}</span>`);
+                    }
+                    if (item.tags && item.tags.length > 0) {
+                        metadata.push(`<span class="tags">${item.tags.join(', ')}</span>`);
+                    }
+                    break;
             }
 
             metadata.push(`<span class="date">${this.formatDate(item.dateAdded)}</span>`);
@@ -188,6 +198,13 @@
                     break;
 
                 case 'articles':
+                    attributes.push(`data-author="${item.author}"`);
+                    if (item.tags) {
+                        attributes.push(`data-tag="${item.tags.join(' ')}"`);
+                    }
+                    break;
+
+                case 'blogs':
                     attributes.push(`data-author="${item.author}"`);
                     if (item.tags) {
                         attributes.push(`data-tag="${item.tags.join(' ')}"`);
@@ -298,6 +315,7 @@
             if (content.problems) content.problems.forEach(i => activities.push({ ...i, type: 'Problem', typeIcon: '🧩', url: `${prefix}problems/${i.filename}` }));
             if (content.concepts) content.concepts.forEach(i => activities.push({ ...i, type: 'Concept', typeIcon: '📚', url: `${prefix}concepts/${i.filename}` }));
             if (content.articles) content.articles.forEach(i => activities.push({ ...i, type: 'Article', typeIcon: '✍️', url: `${prefix}articles/${i.filename}` }));
+            if (content.blogs) content.blogs.forEach(i => activities.push({ ...i, type: 'Blog', typeIcon: '💭', url: `${prefix}blogs/${i.filename}` }));
 
             // Sort by Date (Desc)
             activities.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded));
@@ -332,6 +350,7 @@
         getDescriptionPreview: function (item) {
             if (item.difficulty) return `Difficulty: ${item.difficulty} • Topics: ${item.topics ? item.topics.join(', ') : 'General'}`;
             if (item.category) return `Category: ${item.category} • Complexity: ${item.complexity}`;
+            if (item.readTime) return `${item.readTime} • Tags: ${item.tags ? item.tags.join(', ') : 'General'}`;
             if (item.tags) return `Tags: ${item.tags.join(', ')}`;
             return '';
         }

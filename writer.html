@@ -145,6 +145,7 @@
                 <a href="problems/index.html" class="nav-link">Problems</a>
                 <a href="concepts/index.html" class="nav-link">Concepts</a>
                 <a href="articles/index.html" class="nav-link">Articles</a>
+                <a href="blogs/index.html" class="nav-link">Blogs</a>
                 <a href="writer.html" class="nav-link nav-link--active nav-link--writer">Write</a>
             </nav>
         </div>
@@ -155,13 +156,14 @@
             <div class="writer-interface">
                 <header class="page-header">
                     <h2>Content Writer</h2>
-                    <p>Create programming problems, concepts, or articles for the CodeProb community.</p>
+                    <p>Create programming problems, concepts, articles, blogs, or profiles for the CodeProb community.</p>
                 </header>
 
                 <div class="content-type-tabs">
                     <button class="tab-button active" data-tab="problem">Problem</button>
                     <button class="tab-button" data-tab="concept">Concept</button>
                     <button class="tab-button" data-tab="article">Article</button>
+                    <button class="tab-button" data-tab="blog">Blog</button>
                     <button class="tab-button" data-tab="profile">Profile</button>
                 </div>
 
@@ -485,6 +487,108 @@ Or simple text:
                         </div>
                     </form>
                 </div>
+
+                <!-- Blog Form -->
+                <div id="blog-tab" class="tab-content">
+                    <form id="blog-form">
+                        <div class="form-group">
+                            <label for="blog-title">Blog Title *</label>
+                            <input type="text" id="blog-title" name="title" required>
+                            <div class="help-text">A compelling title for your blog post</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="blog-tags">Tags *</label>
+                            <input type="text" id="blog-tags" name="tags" required>
+                            <div class="help-text">Comma-separated tags (e.g., personal, javascript, career, learning)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="blog-read-time">Read Time *</label>
+                            <input type="text" id="blog-read-time" name="readTime" required placeholder="5 min read">
+                            <div class="help-text">Estimated reading time (e.g., "3 min read", "10 min read")</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="blog-content">Blog Content *</label>
+
+                            <!-- Advanced Wiki-style Writer for Blog -->
+                            <div class="advanced-writer" id="blog-advanced-writer">
+                                <div class="writer-toolbar">
+                                    <div class="toolbar-group">
+                                        <button type="button" data-action="bold"
+                                            title="Bold"><strong>B</strong></button>
+                                        <button type="button" data-action="italic" title="Italic"><em>I</em></button>
+                                        <button type="button" data-action="code" title="Inline Code">`</button>
+                                    </div>
+                                    <div class="toolbar-group">
+                                        <button type="button" data-action="h1" title="Heading 1">H1</button>
+                                        <button type="button" data-action="h2" title="Heading 2">H2</button>
+                                        <button type="button" data-action="h3" title="Heading 3">H3</button>
+                                    </div>
+                                    <div class="toolbar-group">
+                                        <button type="button" data-action="ul" title="Bullet List">List</button>
+                                        <button type="button" data-action="ol" title="Numbered List">1.</button>
+                                        <button type="button" data-action="quote" title="Quote">"</button>
+                                    </div>
+                                    <div class="toolbar-group">
+                                        <button type="button" data-action="link" title="Link">Lnk</button>
+                                        <button type="button" data-action="image" title="Image">Img</button>
+                                        <button type="button" data-action="code-block" title="Code Block">{ }</button>
+                                    </div>
+                                    <div class="toolbar-spacer" style="flex: 1;"></div>
+                                    <div class="toolbar-group">
+                                        <button type="button" class="fullscreen-toggle" title="Toggle Fullscreen">
+                                            <span>⛶</span> Fullscreen
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="writer-body">
+                                    <div class="writer-editor-pane">
+                                        <div class="pane-label">
+                                            <span>Editor</span>
+                                            <span id="blog-word-count">0 words</span>
+                                        </div>
+                                        <textarea id="blog-content" name="content" class="writer-textarea" required
+                                            placeholder="Share your thoughts, experiences, and insights...
+
+This is your space to be personal and authentic. Share:
+• Your coding journey and experiences
+• Lessons learned from projects
+• Thoughts on programming trends
+• Career insights and advice
+• Quick tips and discoveries
+
+Write in your own voice and style!"></textarea>
+                                        <div class="writer-status-bar">
+                                            <span id="blog-save-status">Draft saved locally</span>
+                                            <span>Markdown Enabled</span>
+                                        </div>
+                                    </div>
+                                    <div class="writer-preview-pane">
+                                        <div class="pane-label">Blog Preview</div>
+                                        <div id="blog-preview" class="writer-preview-content"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="blog-related">Related Links (Optional)</label>
+                            <textarea id="blog-related" name="related" placeholder="Links to related content:
+• [JavaScript Fundamentals](/concepts/javascript-fundamentals.html) - Concept
+• [My First Project](/blogs/my-first-project.html) - Previous Blog
+• [External Resource](https://example.com) - External Link"></textarea>
+                            <div class="help-text">Use markdown format for links</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="blog-author">Author *</label>
+                            <input type="text" id="blog-author" name="author" required>
+                        </div>
+                    </form>
+                </div>
+
                 <!-- Profile Form -->
                 <div id="profile-tab" class="tab-content">
                     <form id="profile-form">
