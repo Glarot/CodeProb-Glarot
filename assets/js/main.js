@@ -11,6 +11,7 @@
         // Initialize the application
         init: function () {
             this.setupNavigation();
+            this.setupMobileMenu();
             this.setupFilters();
             this.setupAccessibility();
             this.setupProfileLinking(); // Existing call
@@ -30,6 +31,36 @@
                 const href = link.getAttribute('href');
                 if (href && currentPath.includes(href.replace('/', ''))) {
                     link.classList.add('nav-link--active');
+                }
+            });
+        },
+
+        // Setup mobile menu toggle
+        setupMobileMenu: function () {
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('.main-nav');
+
+            if (!toggle || !nav) return;
+
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nav.classList.toggle('nav--open');
+                toggle.textContent = nav.classList.contains('nav--open') ? '✕' : '☰';
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (nav.classList.contains('nav--open') && !nav.contains(e.target) && !toggle.contains(e.target)) {
+                    nav.classList.remove('nav--open');
+                    toggle.textContent = '☰';
+                }
+            });
+
+            // Close menu when resizing to desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 640 && nav.classList.contains('nav--open')) {
+                    nav.classList.remove('nav--open');
+                    toggle.textContent = '☰';
                 }
             });
         },

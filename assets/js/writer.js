@@ -252,6 +252,9 @@
     <header class="site-header">
         <div class="container">
             <h1 class="site-title"><a href="../index.html">CodeProb</a></h1>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
             <nav class="main-nav">
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="index.html" class="nav-link nav-link--active">Problems</a>
@@ -307,6 +310,9 @@
     <header class="site-header">
         <div class="container">
             <h1 class="site-title"><a href="../index.html">CodeProb</a></h1>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
             <nav class="main-nav">
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="../problems/index.html" class="nav-link">Problems</a>
@@ -365,6 +371,9 @@
     <header class="site-header">
         <div class="container">
             <h1 class="site-title"><a href="../index.html">CodeProb</a></h1>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
             <nav class="main-nav">
                 <a href="../index.html" class="nav-link">Home</a>
                 <a href="../problems/index.html" class="nav-link">Problems</a>
@@ -415,6 +424,9 @@
     <header class="site-header">
         <div class="container">
             <h1 class="site-title"><a href="../../index.html">CodeProb</a></h1>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
             <nav class="main-nav">
                 <a href="../../problems/index.html" class="nav-link">Problems</a>
                 <a href="../../concepts/index.html" class="nav-link">Concepts</a>
