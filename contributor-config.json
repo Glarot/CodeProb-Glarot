@@ -55,6 +55,21 @@
           "Starting Contributing CodeProb  Learning"
         ]
       }
+    ],
+    "blogs": [
+      {
+        "filename": "example-blog.html",
+        "title": "My Journey Learning JavaScript: From Confusion to Confidence",
+        "tags": [
+          "JavaScript",
+          "Learning",
+          "Personal Journey",
+          "Beginner"
+        ],
+        "author": "CodeProb Team",
+        "dateAdded": "2026-01-07",
+        "readTime": "5 min read"
+      }
     ]
   },
   "instructions": {
@@ -82,6 +97,14 @@
         "tags",
         "author",
         "dateAdded"
+      ],
+      "blogs": [
+        "filename",
+        "title",
+        "tags",
+        "author",
+        "dateAdded",
+        "readTime"
       ]
     },
     "validation": "The content indexer will validate that files exist and metadata is complete before displaying content."
