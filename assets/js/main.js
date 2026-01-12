@@ -387,6 +387,12 @@
         }
     };
 
+    // Detect iframe embedding and add class for styling
+    if (window.self !== window.top) {
+        document.documentElement.classList.add('iframe-embedded');
+        document.body.classList.add('iframe-embedded');
+    }
+
     // Initialize when DOM is ready
     document.addEventListener('DOMContentLoaded', function () {
         CodeProb.init();
