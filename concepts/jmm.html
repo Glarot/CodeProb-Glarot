@@ -52,18 +52,22 @@
 <p>For thread-safe code</p>
                 </section>
                 <section class="examples">
-                    <h2>Code Examples</h2>
-                    <pre><code class="language-java">
-<p>class Task {</p>
-<p>    volatile boolean running = true;</p>
-<p>}</p><p>class Treasure {</p>
-<p>    private int points = 0;</p><p>    synchronized void increment() {</p>
-<p>        points++;</p>
-<p>    }</p>
-<p>}</p>
-<p></code></pre>
-                </section>
-                <section class="related-problems">
+    <h2>Code Examples</h2>
+    <pre><code class="language-java">
+class Task {
+    volatile boolean running = true;
+}
+
+class Treasure {
+    private int points = 0;
+
+    synchronized void increment() {
+        points++;
+    }
+}
+    </code></pre>
+</section>
+           <section class="related-problems">
                     <h2>Practice Problems</h2>
                     <p>No related content available.</p>
                 </section>
